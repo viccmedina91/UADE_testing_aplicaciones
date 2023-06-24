@@ -46,8 +46,7 @@ A mano izquierda nos aparecerá el nombre del entorno creado. En mi caso es:
 6. Ejecutamos el siguiente comando para correr el test de prueba:
 `python test_prueba.py`
 
-Si todo sale bien, se espera que una salida como esta:
-`----------------------------------------------------------------------`
+Si todo sale bien, se espera que una salida como esta: \
 `Ran 1 test in 4.808s `
 
 `OK`
