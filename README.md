@@ -25,25 +25,25 @@ Verificamos la instalación con el siguiente comando:
 
 # Configuración del entorno
 
-1. Clonamos el respositorio con el comando:
+1. Clonamos el respositorio con el comando: \
 `git clone  https://github.com/viccmedina91/UADE_testing_aplicaciones.git`
 
 2. Ingresamos a la carpeta del proyecto.
 
-3. Creamos el entorno virtual con el siguiente comando:
+3. Creamos el entorno virtual con el siguiente comando: \
 `python -m venv testing`
 
-4. Activamos el entorno virutal:
+4. Activamos el entorno virutal: \
 `testing\Scripts\activate.bat`
 
-A mano izquierda nos aparecerá el nombre del entorno creado. En mi caso es:
+A mano izquierda nos aparecerá el nombre del entorno creado. En mi caso es: \
 
 `(testing) C:\Users\Victoria\tpo_testing>`
 
-5. Instalamos los requerimientos del proyecto:
+5. Instalamos los requerimientos del proyecto: \
 `pip install -r requeriments.txt`
 
-6. Ejecutamos el siguiente comando para correr el test de prueba:
+6. Ejecutamos el siguiente comando para correr el test de prueba: \
 `python test_prueba.py`
 
 Si todo sale bien, se espera que una salida como esta: \
