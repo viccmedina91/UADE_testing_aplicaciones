@@ -52,9 +52,6 @@ class LoginTest(unittest.TestCase):
         btn_login.click()
 
         self.assertTrue(driver.find_element(By.CLASS_NAME, "error-button"))
-
-    def tearDown(self):
-        self.driver.close()
     
     def test_locked_out_user(self):
         """
@@ -74,6 +71,9 @@ class LoginTest(unittest.TestCase):
         btn_login.click()
         error_text = "Epic sadface: Sorry, this user has been locked out."
         self.assertTrue(driver.find_elements(By.XPATH, "//*[contains(text(), '{}')]".format(error_text)))
+
+    def tearDown(self):
+        self.driver.close()
 
 if __name__ == "__main__":
     unittest.main()
