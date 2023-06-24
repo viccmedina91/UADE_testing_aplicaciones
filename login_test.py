@@ -30,19 +30,28 @@ class LoginTest(unittest.TestCase):
 
         self.assertTrue(driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack"))
 
-        def test_wrong_password(self):
-            """
-            Probaremos que al utilizar una constraseña errónea,
-            el sitio nos indicará que los datos ingresados no son
-            correctos.
-            Datos utilizados:
-            - username: standard_user
-            - password: 1234
+    def test_wrong_password(self):
+        """
+        Probaremos que al utilizar una constraseña errónea,
+        el sitio nos indicará que los datos ingresados no son
+        correctos.
+        Datos utilizados:
+        - username: standard_user
+        - password: 1234
 
-            Condición de éxito: deberá aparecer un cartel rojo que nos indicará
-            que los datos ingresados no son correctos.        
-            """
-    
+        Condición de éxito: deberá aparecer un cartel rojo que nos indicará
+        que los datos ingresados no son correctos cuyo class es "error-button".        
+        """
+        driver = self.driver
+        driver.get("https://www.saucedemo.com/")
+        user = driver.find_element(By.ID, "user-name")
+        password = driver.find_element(By.ID, "password")
+        user.send_keys("standard_user")
+        password.send_keys("1234")
+        btn_login = driver.find_element(By.ID, "login-button")
+        btn_login.click()
+
+        self.assertTrue(driver.find_element(By.CLASS_NAME, "error-button"))
     def tearDown(self):
         self.driver.close()
 
