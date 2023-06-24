@@ -9,6 +9,9 @@ class ShoppingCart(unittest.TestCase):
         self.driver = webdriver.Chrome()
 
     def login(self, driver):
+        """
+        Función que nos permite loguearnos y reutilizarse en las diferentes tests.
+        """
         driver.get("https://www.saucedemo.com/")
         user = driver.find_element(By.ID, "user-name")
         password = driver.find_element(By.ID, "password")
@@ -18,6 +21,9 @@ class ShoppingCart(unittest.TestCase):
         btn_login.click()
     
     def add_element(self, driver, id_btn_product):
+        """
+        Agregamos una función que nos permite agregar elementos al carrito de compras.
+        """
         btn_add_to_cart = driver.find_element(By.ID, id_btn_product)
         btn_add_to_cart.click()
 
