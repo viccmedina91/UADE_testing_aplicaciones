@@ -52,8 +52,28 @@ class LoginTest(unittest.TestCase):
         btn_login.click()
 
         self.assertTrue(driver.find_element(By.CLASS_NAME, "error-button"))
+
     def tearDown(self):
         self.driver.close()
+    
+    def test_locked_out_user(self):
+        """
+        Probaremos que al loguearnos con un usuario bloqueado, no podemos iniciar sesión.
+        Datos utilizados:
+        - username: locked_out_user
+        - password: secret_sauce
+        Condición de éxito: Encontrar el texto "Epic sadface: Sorry, this user has been locked out."
+        """
+        driver = self.driver
+        driver.get("https://www.saucedemo.com/")
+        user = driver.find_element(By.ID, "user-name")
+        password = driver.find_element(By.ID, "password")
+        user.send_keys("locked_out_user")
+        password.send_keys("secret_sauce")
+        btn_login = driver.find_element(By.ID, "login-button")
+        btn_login.click()
+        error_text = "Epic sadface: Sorry, this user has been locked out."
+        self.assertTrue(driver.find_elements(By.XPATH, "//*[contains(text(), '{}')]".format(error_text)))
 
 if __name__ == "__main__":
     unittest.main()
