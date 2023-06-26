@@ -7,6 +7,19 @@ class LoginTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
+        self.values = {
+            "id_user": "user-name",
+            "id_password" : "password",
+            "id_btn_login" : "login-button",
+            "url": "https://www.saucedemo.com/"
+        }
+    
+    def find_elements(self, driver, test_values):
+        driver.get(self.values["url"])
+        user = driver.find_element(By.ID, self.values["id_user"])
+        password = driver.find_element(By.ID, self.values["id_password"])
+        user.send_keys(test_values["user"])
+        password.send_keys(test_values["password"])
 
     def test_happy_login(self):
         """
@@ -20,14 +33,14 @@ class LoginTest(unittest.TestCase):
         cuyo id es "add-to-cart-sauce-labs-backpack"
         """
         driver = self.driver
-        driver.get("https://www.saucedemo.com/")
-        user = driver.find_element(By.ID, "user-name")
-        password = driver.find_element(By.ID, "password")
-        user.send_keys("standard_user")
-        password.send_keys("secret_sauce")
+        test_values = {
+            "user": "standard_user",
+            "password": "secret_sauce"
+        }
+        self.find_elements(driver, test_values)
+
         btn_login = driver.find_element(By.ID, "login-button")
         btn_login.click()
-
         self.assertTrue(driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack"))
 
     def test_wrong_password(self):
@@ -43,11 +56,12 @@ class LoginTest(unittest.TestCase):
         que los datos ingresados no son correctos cuyo class es "error-button".        
         """
         driver = self.driver
-        driver.get("https://www.saucedemo.com/")
-        user = driver.find_element(By.ID, "user-name")
-        password = driver.find_element(By.ID, "password")
-        user.send_keys("standard_user")
-        password.send_keys("1234")
+        test_values = {
+            "user": "standard_user",
+            "password": "1234"
+        }
+        self.find_elements(driver, test_values)
+
         btn_login = driver.find_element(By.ID, "login-button")
         btn_login.click()
 
@@ -62,11 +76,12 @@ class LoginTest(unittest.TestCase):
         Condición de éxito: Encontrar el texto "Epic sadface: Sorry, this user has been locked out."
         """
         driver = self.driver
-        driver.get("https://www.saucedemo.com/")
-        user = driver.find_element(By.ID, "user-name")
-        password = driver.find_element(By.ID, "password")
-        user.send_keys("locked_out_user")
-        password.send_keys("secret_sauce")
+        test_values = {
+            "user": "locked_out_user",
+            "password": "secret_sauce"
+        }
+        self.find_elements(driver, test_values)
+
         btn_login = driver.find_element(By.ID, "login-button")
         btn_login.click()
         error_text = "Epic sadface: Sorry, this user has been locked out."
